@@ -13,7 +13,7 @@ def index():
     data_atual = datetime.now().strftime('%d/%m/%Y')
     df = df[df['DATA'] == data_atual]
 
-    colunas_para_ocultar = ['CÓD', 'MOT', 'CR1', 'CR2', 'DOLLY', 'NF', 'OBSERVAÇÃO', 'COMENTÁRIO', 'HORA DA EMISSÃO', 'Unnamed: 15', 'Unnamed: 16', 'Unnamed: 17', 'Unnamed: 18', 'Unnamed: 19', 'Unnamed: 20', 'Unnamed: 21', 'Unnamed: 22', 'Unnamed: 24', 'VICTOR', 'PENDENTE']
+    colunas_para_ocultar = ['MOT', 'CR1', 'CR2', 'DOLLY', 'NF', 'OBSERVAÇÃO', 'COMENTÁRIO', 'HORA DA EMISSÃO', 'Unnamed: 15', 'Unnamed: 16', 'Unnamed: 17', 'Unnamed: 18', 'Unnamed: 19', 'Unnamed: 20', 'Unnamed: 21', 'Unnamed: 22', 'Unnamed: 24', 'VICTOR', 'PENDENTE']
     colunas_presentes = [col for col in colunas_para_ocultar if col in df.columns]
 
     if colunas_presentes:
