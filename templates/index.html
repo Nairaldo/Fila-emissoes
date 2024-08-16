@@ -44,18 +44,18 @@
     </style>
 
     <script>
-        // Função para mostrar o aviso de atualização
+        
         function showLoading() {
             document.getElementById('loading').style.display = 'block';
         }
 
-        // Atualiza a página automaticamente a cada 2 minutos
+        
         setInterval(function() {
             showLoading();
             setTimeout(function() {
                 location.reload();
-            }, 3000); // Aguarda 3 segundos para mostrar o aviso de atualização
-        }, 120000); // Atualiza a página a cada 2 minutos (120000 ms)
+            }, 3000); 
+        }, 120000); 
     </script>
 </head>
 <body>
