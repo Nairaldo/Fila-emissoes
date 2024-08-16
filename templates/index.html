@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dados do Google Sheets</title>
+    <title>FILA DE EMISSÕES - CEDT</title>
+    <!-- Adicionando CSS para estilizar a tabela -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,12 +12,6 @@
         }
         h1 {
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        img {
-            margin-right: 10px;
         }
         table {
             width: 100%;
@@ -33,13 +28,39 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+        #loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 20%;
+        }
     </style>
+
+    <script>
+        // Função para mostrar o aviso de atualização
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        // Atualiza a página automaticamente a cada 2 minutos
+        setInterval(function() {
+            showLoading();
+            setTimeout(function() {
+                location.reload();
+            }, 3000); // Aguarda 3 segundos para mostrar o aviso de atualização
+        }, 120000); // Atualiza a página a cada 2 minutos (120000 ms)
+    </script>
 </head>
 <body>
-    <h1>
-        <img src="{{ url_for('static', filename='ico.ico') }}" alt="Ícone" width="32" height="32">
-        FILA DE EMISSÕES - CEDT
-    </h1>
+    <h1>FILA DE EMISSÕES - CEDT</h1>
+    <div id="loading">Página em atualização, aguarde alguns segundos...</div>
     {{ data|safe }}
 </body>
 </html>
