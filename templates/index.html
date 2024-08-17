@@ -2,16 +2,37 @@
 <html>
 <head>
     <title>FILA DE EMISSÕES - CEDT</title>
-    <!-- Adicionando CSS para estilizar a tabela -->
+    <link rel="icon" href="/static/ico.ico" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f1efef;
             margin: 0;
             padding: 20px;
         }
+        .header {
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background-color: #e9e9e9;
+            padding: 10px 0;
+            z-index: 2;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+        }
         h1 {
-            text-align: center;
+            color: #183f61;
+            font-weight: bold;
+            margin: 0;
+            flex: 1;
+        }
+        #clock {
+            font-size: 20px;
+            font-weight: bold;
         }
         table {
             width: 100%;
@@ -19,14 +40,26 @@
             margin: 25px 0;
             font-size: 18px;
             text-align: center;
+            position: relative;
         }
         th, td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
             text-align: center;
+            font-weight: bold;
+        }
+        thead th {
+            position: sticky;
+            top: 60px; 
+            background-color: #fff;
+            z-index: 1;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #b9d1e4; 
+        }
+        tr:nth-child(odd) {
+            background-color: #f8e1bb; 
         }
         #loading {
             display: none;
@@ -44,22 +77,40 @@
     </style>
 
     <script>
-        
         function showLoading() {
             document.getElementById('loading').style.display = 'block';
         }
 
-        
         setInterval(function() {
             showLoading();
             setTimeout(function() {
                 location.reload();
             }, 3000); 
-        }, 120000); 
+        }, 120000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+        window.onload = function() {
+            window.scrollTo(0, document.body.scrollHeight);
+            updateClock();
+        };
+
+        function updateClock() {
+            let options = { timeZone: 'America/Sao_Paulo', hour12: false };
+            let now = new Date().toLocaleTimeString('pt-BR', options);
+            document.getElementById('clock').innerHTML = now;
+        }
+        setInterval(updateClock, 1000);
     </script>
 </head>
 <body>
-    <h1>FILA DE EMISSÕES - CEDT</h1>
+    <div class="header">
+        <img src="/static/ico.ico" alt="Logo" class="logo">
+        <h1>FILA DE EMISSÕES - CEDT</h1>
+        <div id="clock"></div>
+    </div>
     <div id="loading">Página em atualização, aguarde alguns segundos...</div>
     {{ data|safe }}
 </body>
